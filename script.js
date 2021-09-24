@@ -1,43 +1,52 @@
 // Assignment Code
 
 let lowerCase = 'abcdefghijklmnopqrstuvwxyz1234567890', upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  specialCharacters = '!#$%&*+,-./:();<=>?@[]^_`{|}~'; //creates strings to pull characters from
+  specialCharacters = '!#$%&*+,-./:();<=>?@[]^_`{|}~', numerals = '1234567890', characterString = "", generatorString = ""; //creates strings to pull characters from and strings to put them into
 
-let characterString
-
-//get values through prompts
+//get values through prompts, check them for validity & reprompt if theyre invalid
 let passwordLength;
 do {
   passwordLength = window.prompt("Enter number of characters (8-128): ")
-} while (!passwordLength);
+} while (!passwordLength, passwordLength > 128, passwordLength < 8);
 
 let upperCaseInclude;
 do {
-  upperCaseInclude = window.prompt("Would you like lower-case characters in your password? (yes/no)")
-} while (!upperCaseInclude);
+  upperCaseInclude = window.prompt("Would you like upper-case characters in your password? (yes/no)")
+} while (!upperCaseInclude, !(upperCaseInclude.toLowerCase() == 'yes' || upperCaseInclude.toLowerCase() == 'no'));
 
 let lowerCaseInclude;
 do {
-  lowerCaseInclude = window.prompt("Would you like upper-case characters in your password? (yes/no)")
-} while (!lowerCaseInclude);
+  lowerCaseInclude = window.prompt("Would you like lower-case characters in your password? (yes/no)")
+} while (!lowerCaseInclude, !(lowerCaseInclude.toLowerCase() == 'yes' || lowerCaseInclude.toLowerCase() == 'no'));
 
 let specialCharactersInclude;
 do {
   specialCharactersInclude = window.prompt("Would you like special characters in your password? (yes/no)")
-} while (!specialCharactersInclude);
+} while (!specialCharactersInclude, !(specialCharactersInclude.toLowerCase() == 'yes' || specialCharactersInclude.toLowerCase() == 'no'));
 
-let generatorString = ""
+let numeralsInclude;
+do {
+  numeralsInclude = window.prompt("Would you like numerals in your password? (yes/no)")
+} while (!numerals, !(numeralsInclude.toLowerCase() == 'yes' || numeralsInclude.toLowerCase() == 'no'));
 
-
-if (upperCaseInclude.toLowerCase() == 'yes' && specialCharactersInclude.toLowerCase() == 'yes') {
-  characterString = (lowerCase + upperCase + specialCharacters)
+if (lowerCaseInclude.toLowerCase() == 'yes') {
+  characterString = characterString.concat(lowerCase)
 }
-else if (upperCaseInclude.toLowerCase() == 'yes') {
-  characterString = (lowerCase + upperCase)
+
+if (upperCaseInclude.toLowerCase() == 'yes') {
+  characterString = characterString.concat(upperCase)
 }
-else (
-  characterString = lowerCase
-)//create string to pull characters from based on user inputs
+
+if (specialCharactersInclude.toLowerCase() == 'yes') {
+  characterString = characterString.concat(specialCharacters)
+}
+
+if (numeralsInclude.toLowerCase() == 'yes') {
+  characterString = characterString.concat(numerals)
+}
+
+if (characterString == "")
+  alert("You selected no character options. Please refresh and try again.")
 
 var generateBtn = document.querySelector("#generate"); //targets the button & assigns it a variable
 
@@ -61,8 +70,7 @@ generateBtn.addEventListener("click", function () {
 function generatePassword() {
   generatorString = ""
   for (let i = 0; i < passwordLength; i++) {
-    let charNumber = Math.floor((Math.random() * passwordLength) + 1)
-
+    let charNumber = Math.floor((Math.random() * characterString.length) + 1)
     slicedChar = characterString.slice(charNumber - 1, charNumber)
 
     generatorString += slicedChar
