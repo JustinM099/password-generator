@@ -45,8 +45,10 @@ if (numeralsInclude.toLowerCase() == 'yes') {
   characterString = characterString.concat(numerals)
 }
 
-if (characterString == "")
-  alert("You selected no character options. Please refresh and try again.")
+if (characterString == "") {
+  alert("Please select at least one set of characters.")
+  location.reload()
+}
 
 var generateBtn = document.querySelector("#generate"); //targets the button & assigns it a variable
 
