@@ -5,7 +5,7 @@ let lowerCase = 'abcdefghijklmnopqrstuvwxyz1234567890', upperCase = 'ABCDEFGHIJK
 let passwordLength
 do {
   passwordLength = window.prompt("Enter number of characters (8-128): ")
-} while (!passwordLength, passwordLength > 128, passwordLength < 8)
+} while (!passwordLength, (passwordLength < 8 || passwordLength > 128));
 
 let upperCaseInclude
 do {
