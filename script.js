@@ -4,23 +4,23 @@ function passwordGenerator() {
   //get values through prompts, check them for validity & reprompt if theyre invalid
   let passwordLength
   do {
-    passwordLength = window.prompt("Enter number of characters (8-128): ")
+    passwordLength = prompt("Enter number of characters (8-128): ")
   } while (!passwordLength, (passwordLength < 8 || passwordLength > 128));
   let upperCaseInclude
   do {
-    upperCaseInclude = window.prompt("Would you like upper-case characters in your password? (yes/no)")
+    upperCaseInclude = prompt("Would you like upper-case characters in your password? (yes/no)")
   } while (!upperCaseInclude, !(upperCaseInclude.toLowerCase() == 'yes' || upperCaseInclude.toLowerCase() == 'no'))
   let lowerCaseInclude
   do {
-    lowerCaseInclude = window.prompt("Would you like lower-case characters in your password? (yes/no)")
+    lowerCaseInclude = prompt("Would you like lower-case characters in your password? (yes/no)")
   } while (!lowerCaseInclude, !(lowerCaseInclude.toLowerCase() == 'yes' || lowerCaseInclude.toLowerCase() == 'no'))
   let specialCharactersInclude
   do {
-    specialCharactersInclude = window.prompt("Would you like special characters in your password? (yes/no)")
+    specialCharactersInclude = prompt("Would you like special characters in your password? (yes/no)")
   } while (!specialCharactersInclude, !(specialCharactersInclude.toLowerCase() == 'yes' || specialCharactersInclude.toLowerCase() == 'no'))
   let numeralsInclude
   do {
-    numeralsInclude = window.prompt("Would you like numerals in your password? (yes/no)")
+    numeralsInclude = prompt("Would you like numerals in your password? (yes/no)")
   } while (!numerals, !(numeralsInclude.toLowerCase() == 'yes' || numeralsInclude.toLowerCase() == 'no'))
   //take prompts and create characterString based on preferences
   if (lowerCaseInclude.toLowerCase() == 'yes') {
@@ -33,7 +33,7 @@ function passwordGenerator() {
     characterString = characterString.concat(numerals)
   } if (characterString == "") {
     alert("Please select at least one set of characters.")
-    passwordGenerator() //checks to make sure at least one character set was seleted. If not, reloads website to reprompt.
+    passwordGenerator() //checks to make sure at least one character set was selected. If not, recalls the function.
   }
   var generateBtn = document.querySelector("#generate")  //targets the button & assigns it a variable
   // Write password to the #password input - this is the function called when the button is clicked
