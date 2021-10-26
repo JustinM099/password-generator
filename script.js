@@ -1,4 +1,10 @@
-function passwordGenerator() {
+ 
+  var generateBtn = document.querySelector("#generate")  //targets the button & assigns it a variable
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", function () {
+  passwordGenerator()
+  }) //adds click event to button, calls 'writePassword' on click
+  function passwordGenerator() {
   let lowerCase = 'abcdefghijklmnopqrstuvwxyz1234567890', upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     specialCharacters = '!#$%&*+,-./:();<=>?@[]^_`{|}~', numerals = '1234567890', characterString = "", generatorString = "" //creates strings to pull characters from and strings to put them into
   //get values through prompts, check them for validity & reprompt if theyre invalid
@@ -33,9 +39,9 @@ function passwordGenerator() {
     characterString = characterString.concat(numerals)
   } if (characterString == "") {
     alert("Please select at least one set of characters.")
-    passwordGenerator() //checks to make sure at least one character set was selected. If not, recalls the function.
+    window.location.reload()
+    return //checks to make sure at least one character set was selected. If not, reloads the page.
   }
-  var generateBtn = document.querySelector("#generate")  //targets the button & assigns it a variable
   // Write password to the #password input - this is the function called when the button is clicked
   function writePassword() {
     var password = generatePassword()  //the password variable is created & defined as the content of generatePassword function
@@ -44,16 +50,14 @@ function passwordGenerator() {
   }
   function generatePassword() { //this creates the password
     generatorString = ""
+    console.log(generatorString + 'the string')
     for (let i = 0; i < passwordLength; i++) {
       let charNumber = Math.floor((Math.random() * characterString.length)) //generates a random number
       slicedChar = characterString[charNumber] //slices out a character from characterString based on random number
       generatorString += slicedChar //adds the sliced out number to the generatorString
     } return generatorString //returns the created password
   }
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", function () {
-    generatePassword()
-    writePassword()
-  }) //adds click event to button, calls 'writePassword' on click
+  generatePassword()
+  writePassword()
+ 
 }
-passwordGenerator()
