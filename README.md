@@ -1,10 +1,8 @@
 This is a password generator application.
-When the website is loaded, the user is given a series of prompts about the size of their password
+When the 'generate password' button is clicked, the user is given a series of prompts about the size of their password
 and what characters should be included.
-After user input is taken, the user can then click on a button that will generate a custom password
-based on their inputs.
-The user may click this button as many times as they like, and a new, random password will be generated
-each time.
+After user input is taken, a random password is displayed on the page.
+The user may click this button as many times as they like, and will be reprompted to produce a new password.
 
 Here's a screenshot:
 ![alt text](screenshot.png)
